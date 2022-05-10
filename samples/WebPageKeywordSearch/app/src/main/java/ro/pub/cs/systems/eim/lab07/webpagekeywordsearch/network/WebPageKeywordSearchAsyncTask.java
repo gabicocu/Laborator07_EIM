@@ -39,6 +39,7 @@ public class WebPageKeywordSearchAsyncTask extends AsyncTask<String, Void, Strin
             if (error != null) {
                 return error;
             }
+//            Log.d("A aj aici", "da" );
             URL url = new URL(webPageAddress);
             result.append("Protocol: " + url.getProtocol() + "\n");
             result.append("Host: " + url.getHost() + "\n");
@@ -48,7 +49,7 @@ public class WebPageKeywordSearchAsyncTask extends AsyncTask<String, Void, Strin
             result.append("==========\n");
             URLConnection urlConnection = url.openConnection();
             if (urlConnection instanceof HttpURLConnection) {
-                httpURLConnection = (HttpURLConnection)urlConnection;
+                httpURLConnection = (HttpURLConnection) urlConnection;
                 BufferedReader bufferedReader = Utilities.getReader(httpURLConnection);
                 int currentLineNumber = 0, numberOfOccurrences = 0;
                 String currentLineContent;
@@ -62,6 +63,10 @@ public class WebPageKeywordSearchAsyncTask extends AsyncTask<String, Void, Strin
                 result.append("Number of occurrences: " + numberOfOccurrences + "\n");
                 return result.toString();
             }
+//            } else {
+//                result.append("\n Invalid web page address");
+//                return result.toString();
+//            }
         } catch (MalformedURLException malformedURLException) {
             Log.e(Constants.TAG, malformedURLException.getMessage());
             if (Constants.DEBUG) {
